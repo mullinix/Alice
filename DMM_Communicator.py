@@ -2,6 +2,8 @@ import serial
 import time
 
 class DMM_Communicator:
+#	def __init__(self):
+#		print "DMM Object Initialized\n"
 
 	def read_agilent(self,ser):
 		ser.write('READ?\n')
@@ -15,9 +17,9 @@ class DMM_Communicator:
 		return ser
 	
 	def test_agilent(self):
-		ser=init_agilent()
+		ser=self.init_agilent()
 		for i in xrange(10):
-			print read_agilent(ser)
+			print self.read_agilent(ser)
 			time.sleep(2)
 
 		
