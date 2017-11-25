@@ -1,25 +1,23 @@
 import serial
 import time
 
-class DMM_Communicator:
+class RT_Communicator:
 #	def __init__(self):
 #		print "DMM Object Initialized\n"
 
-	def read_agilent(self,ser):
+	def read_galil(self,ser):
 		ser.write('READ?\n')
 		return ser.readline()
 	
-	def init_agilent(self,PortIn='COM2', BaudIn=9600, TOIn=1):
+	def init_galil(self,PortIn='COM1', BaudIn=19200, TOIn=1):
 		ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
-		ser.write('SYST:REM\n')
-		ser.write('MEAS:VOLT:DC?\n')
-		ser.write('INIT\n')
+		ser.write('SHA\n')
 		return ser
 	
-	def test_agilent(self):
-		ser=self.init_agilent()
+	def test_galil(self):
+		ser=self.init_galil()
 		for i in xrange(10):
-			print self.read_agilent(ser)
+			print self.read_galil(ser)
 			time.sleep(2)
 
 		
