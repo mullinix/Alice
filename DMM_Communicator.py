@@ -7,13 +7,23 @@ class DMM_Communicator:
 
 	def read_agilent(self,ser):
 		ser.write('READ?\n')
-		return ser.readline()
+                strout=ser.readline()
+                cleanstr=strout.strip()
+                valout=float(cleanstr)
+		return valout # ser.readline()
 	
 	def init_agilent(self,PortIn='COM2', BaudIn=9600, TOIn=1):
 		ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
 		ser.write('SYST:REM\n')
 		ser.write('MEAS:VOLT:DC?\n')
 		ser.write('INIT\n')
+                # here we read the first line (it comes out wonky, so let's waste it)
+                ser.write('READ?\n')
+                time.sleep(0.5)
+                ser.readline()
+                # flush serial, prepare for reading
+                ser.flushOutput()
+                ser.flushInput()
 		return ser
 	
 	def test_agilent(self):

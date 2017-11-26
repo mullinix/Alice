@@ -1,5 +1,6 @@
 import serial
 import time
+import re
 
 class FOG_Communicator:
 #	def __init__(self):
@@ -12,12 +13,14 @@ class FOG_Communicator:
                 ser.flushInput()
                 for i in xrange(5):
                     ser.readline()
-#		return ser.readline()
-	
-        def stop_crossbow_read(self,ser):
+                strout=ser.readline()
+                cleanstr=strout.strip()
+                numre=re.compile('\d+')
+                numlist=numre.findall(cleanstr)
+                valout=float(numlist[0])
                 ser.write('X')
-
-
+                return valout
+	
         def init_crossbow(self,PortIn='COM7', BaudIn=115200, TOIn=5):
 		ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
 		ser.write('Z')
@@ -25,11 +28,9 @@ class FOG_Communicator:
 	
 	def test_crossbow(self):
 		ser=self.init_crossbow()
-                self.read_crossbow(ser)
 		for i in xrange(10):
-			print ser.readline()
+                        print self.read_crossbow(ser)
 			time.sleep(0.5)
-                self.stop_crossbow_read(ser)
                 ser.close()
 
 		
