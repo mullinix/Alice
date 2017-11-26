@@ -6,7 +6,7 @@ import time
 
 num_samples = 30
 shift_degs = 15
-num_shifts = 180/shift_degs
+num_shifts = 180/shift_degs+1 # add one to include 180 degrees
 
 data=np.zeros((num_samples*num_shifts,3))
 
