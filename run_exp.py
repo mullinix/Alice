@@ -31,4 +31,4 @@ for shift in xrange(num_shifts):
     degs+=shift_degs
     time.sleep(5)
 
-np.savetxt("results.csv",data,delimeter=",")
+np.savetxt("results.csv",data,delimiter=",")
