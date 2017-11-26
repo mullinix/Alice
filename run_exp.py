@@ -26,10 +26,9 @@ for shift in xrange(num_shifts):
         volts = dmm.read_agilent(dmmser)
         counts = fog.read_crossbow(fogser)
         data[idx,]=[degs,volts,counts]
+        print data[idx,]
     rt.turn_galil(ser=rtser,theta=shift_degs)
     degs+=shift_degs
     time.sleep(5)
-
-print data
 
 np.savetxt("results.csv",data,delimeter=",")
