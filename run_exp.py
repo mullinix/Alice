@@ -9,8 +9,8 @@ def difftime(start,end):
 
 
 num_samples = 10
-shift_degs = 15
-num_shifts = 180/shift_degs+1 # add one to include 180 degrees
+shift_degs = 1
+num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 
 data=np.zeros((num_samples*num_shifts,4))
 
@@ -25,12 +25,14 @@ fogser = fog.init_crossbow()
 starttime=time.time()
 degs=0
 for shift in xrange(num_shifts):
+    print "Shift %d" % shift
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
         volts = dmm.read_agilent(dmmser)
         counts = fog.read_crossbow(fogser)
         thyme = difftime(starttime,time.time())
         data[idx,]=[degs,volts,counts,thyme]
+        print "Progress: %.2f%%" % (float(idx+1)/(num_shifts*num_samples)*100)
         print data[idx,]
     rt.turn_galil(ser=rtser,theta=shift_degs)
     degs+=shift_degs
