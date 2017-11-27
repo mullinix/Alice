@@ -9,7 +9,7 @@ def difftime(start,end):
 
 
 num_samples = 10
-shift_degs = 1
+shift_degs = 45
 num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 
 data=np.zeros((num_samples*num_shifts,4))
@@ -21,7 +21,7 @@ rt = RT_Communicator()
 rtser = rt.init_galil()
 
 fog = FOG_Communicator()
-fogser = fog.init_crossbow()
+fogser = fog.init_emcore()
 starttime=time.time()
 degs=0
 for shift in xrange(num_shifts):
@@ -29,7 +29,7 @@ for shift in xrange(num_shifts):
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
         volts = dmm.read_agilent(dmmser)
-        counts = fog.read_crossbow(fogser)
+        counts = fog.read_emcore(fogser)
         thyme = difftime(starttime,time.time())
         data[idx,]=[degs,volts,counts,thyme]
         print "Progress: %.2f%%" % (float(idx+1)/(num_shifts*num_samples)*100)

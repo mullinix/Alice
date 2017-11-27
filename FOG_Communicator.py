@@ -6,7 +6,7 @@ class FOG_Communicator:
 #	def __init__(self):
 #		print "FOG Object Initialized\n"
 
-	def read_crossbow(self,ser):
+	def read_emcore(self,ser):
 		ser.write('G')
                 time.sleep(0.5)
                 ser.flushOutput()
@@ -15,21 +15,21 @@ class FOG_Communicator:
                     ser.readline()
                 strout=ser.readline()
                 cleanstr=strout.strip()
-                numre=re.compile('\d+')
+                numre=re.compile('[-]?\d+')
                 numlist=numre.findall(cleanstr)
                 valout=float(numlist[0])
                 ser.write('X')
                 return valout
 	
-        def init_crossbow(self,PortIn='COM7', BaudIn=115200, TOIn=5):
+        def init_emcore(self,PortIn='COM7', BaudIn=115200, TOIn=5):
 		ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
 		ser.write('Z')
 		return ser
 	
-	def test_crossbow(self):
-		ser=self.init_crossbow()
+	def test_emcore(self):
+		ser=self.init_emcore()
 		for i in xrange(10):
-                        print self.read_crossbow(ser)
+                        print self.read_emcore(ser)
 			time.sleep(0.5)
                 ser.close()
 
