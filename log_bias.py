@@ -9,7 +9,7 @@ def difftime(start,end):
 
 
 num_samples = 100
-shift_degs = 90
+shift_degs = 211.75
 num_shifts = 1 # 360/shift_degs+1 # add one to include 180 degrees
 
 data=np.zeros((num_samples*num_shifts,4))
