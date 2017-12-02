@@ -21,6 +21,8 @@ xc=cos(t);
 xs=sin(t);
 fit=lm(spread[-ix]~xc+xs);
 
+print(fit$coefficients)
+
 # use the linear statistical model to find north
 alfa=fit$coefficients[2];
 betta=fit$coefficients[3];
