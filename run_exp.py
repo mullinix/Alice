@@ -52,8 +52,8 @@ udegs=np.unique(data['degs'])
 
 plt.close('all')
 plt.plot(udegs,north,'k.-',label='Convergence to North')
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.show()
+plt.legend(loc=1)
+plt.show(block=False)
 
 print "Rotating to %.2f degrees relative." % north[shift]
 rt.disconnect()
