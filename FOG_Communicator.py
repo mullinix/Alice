@@ -3,34 +3,29 @@ import time
 import re
 
 class FOG_Communicator:
-#	def __init__(self):
-#		print "FOG Object Initialized\n"
-
-	def read_emcore(self,ser):
-		ser.write('G')
+        def __init__(self,PortIn='COM7', BaudIn=115200, TOIn=5):
+		self.ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
+		self.ser.write('Z')
+	
+	def read_emcore(self):
+		self.ser.write('G')
                 time.sleep(0.5)
-                ser.flushOutput()
-                ser.flushInput()
+                self.ser.flushOutput()
+                self.ser.flushInput()
                 for i in xrange(5):
-                    ser.readline()
-                strout=ser.readline()
+                    self.ser.readline()
+                strout=self.ser.readline()
                 cleanstr=strout.strip()
                 numre=re.compile('[-]?\d+')
                 numlist=numre.findall(cleanstr)
                 valout=float(numlist[0])
-                ser.write('X')
+                self.ser.write('X')
                 return valout
 	
-        def init_emcore(self,PortIn='COM7', BaudIn=115200, TOIn=5):
-		ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
-		ser.write('Z')
-		return ser
-	
 	def test_emcore(self):
-		ser=self.init_emcore()
 		for i in xrange(10):
-                        print self.read_emcore(ser)
+                        print self.read_emcore()
 			time.sleep(0.5)
-                ser.close()
+                self.ser.close()
 
 		

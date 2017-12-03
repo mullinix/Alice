@@ -15,12 +15,9 @@ num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 data=np.zeros((num_samples*num_shifts,4))
 
 dmm = DMM_Communicator()
-
 rt = RT_Communicator()
-rtser = rt.init_galil()
-
 fog = FOG_Communicator()
-fogser = fog.init_emcore()
+
 starttime=time.time()
 degs=0
 for shift in xrange(num_shifts):
@@ -28,12 +25,12 @@ for shift in xrange(num_shifts):
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
         volts = dmm.read_agilent()
-        counts = fog.read_emcore(fogser)
+        counts = fog.read_emcore()
         thyme = difftime(starttime,time.time())
         data[idx,]=[degs,volts,counts,thyme]
         print "Progress: %.2f%%" % (float(idx+1)/(num_shifts*num_samples)*100)
         print data[idx,]
-    rt.turn_galil(ser=rtser,theta=shift_degs)
+    rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
     time.sleep(5)
 
