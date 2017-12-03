@@ -1,7 +1,9 @@
 from DMM_Communicator import DMM_Communicator
 from FOG_Communicator import FOG_Communicator
 from RT_Communicator import RT_Communicator
+from fitData import findNorth
 import numpy as np
+import matplotlib.pyplot as plt
 import time
 import sys
 
@@ -21,6 +23,8 @@ def difftime(start,end):
 
 data=np.zeros((num_samples*num_shifts,4))
 
+north=np.zeros(num_shifts)
+
 dmm = DMM_Communicator()
 rt = RT_Communicator()
 fog = FOG_Communicator()
@@ -39,6 +43,13 @@ for shift in xrange(num_shifts):
         print data[idx,]
     rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
-    time.sleep(5)
+    time.sleep(4)
+    north[shift] = findNorth(data[1:idx,])
 
 np.savetxt(fname,data,delimiter=",")
+
+udegs=np.unique(data[,1])
+
+plt.plot(udegs,north,'k.-',label='Convergence to North')
+plt.legend()
+plt.show()
