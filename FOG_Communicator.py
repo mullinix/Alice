@@ -28,4 +28,5 @@ class FOG_Communicator:
 			time.sleep(0.5)
                 self.ser.close()
 
-		
+	def disconnect(self):
+		self.ser.close()

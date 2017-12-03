@@ -52,9 +52,11 @@ udegs=np.unique(data['degs'])
 
 plt.close('all')
 plt.plot(udegs,north,'k.-',label='Convergence to North')
-plt.legend()
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.show()
 
 print "Rotating to %.2f degrees relative." % north[shift]
-
+rt.disconnect()
+dmm.disconnect()
+fog.disconnect()
 os.system(".\\moveRT.py %.2f" % north[shift])

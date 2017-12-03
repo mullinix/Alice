@@ -52,4 +52,6 @@ class RT_Communicator:
 			time.sleep(2)
                 self.ser.close()
 
-		
+
+	def disconnect(self):
+		self.ser.close()		

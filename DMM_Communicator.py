@@ -23,9 +23,10 @@ class DMM_Communicator:
 		return valout
 	
 	def test_agilent(self):
-		ser=self.init_agilent()
 		for i in xrange(10):
 			print self.read_agilent()
 			time.sleep(2)
 
-		
+	
+	def disconnect(self):
+		self.ser.close()	
