@@ -5,7 +5,7 @@ from fitData import findNorth
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-import sys
+import os,sys
 
 nargin = len(sys.argv)
 
@@ -50,6 +50,11 @@ np.savetxt(fname,data,delimiter=",")
 
 udegs=np.unique(data['degs'])
 
+plt.close('all')
 plt.plot(udegs,north,'k.-',label='Convergence to North')
 plt.legend()
 plt.show()
+
+print "Rotating to %.2f degrees relative." % north[shift]
+
+os.system(".\\moveRT.py %.2f" % north[shift])
