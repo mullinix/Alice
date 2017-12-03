@@ -3,14 +3,21 @@ from FOG_Communicator import FOG_Communicator
 from RT_Communicator import RT_Communicator
 import numpy as np
 import time
+import sys
+
+nargin = len(sys.argv)
+
+if(nargin<4):
+	sys.exit( "Usage: $ %s <number_of_samples_per_step> <number_of_degrees_per_step> <output_file_name>" % sys.argv[0])
+
+num_samples = int(sys.argv[1])
+shift_degs = int(sys.argv[2])
+fname = str(sys.argv[3])
+
+num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 
 def difftime(start,end):
     return float(end-start)
-
-
-num_samples = 10
-shift_degs = 5
-num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 
 data=np.zeros((num_samples*num_shifts,4))
 
@@ -34,4 +41,4 @@ for shift in xrange(num_shifts):
     degs+=shift_degs
     time.sleep(5)
 
-np.savetxt("results.csv",data,delimiter=",")
+np.savetxt(fname,data,delimiter=",")
