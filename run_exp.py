@@ -32,15 +32,13 @@ fog = FOG_Communicator()
 starttime=time.time()
 degs=0
 for shift in xrange(num_shifts):
-    print "Shift %d" % shift
+    print "Shift %.2f, Progress: %.2f" % (degs,(float(shift+1)/(num_shifts)*100))
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
         volts = dmm.read_agilent()
         counts = fog.read_emcore()
         thyme = difftime(starttime,time.time())
         data[idx]=(degs,volts,counts,thyme)
-        print "Progress: %.2f%%" % (float(idx+1)/(num_shifts*num_samples)*100)
-        print data[idx]
     rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
     time.sleep(4)
