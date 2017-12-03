@@ -15,7 +15,6 @@ num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 data=np.zeros((num_samples*num_shifts,4))
 
 dmm = DMM_Communicator()
-dmmser = dmm.init_agilent()
 
 rt = RT_Communicator()
 rtser = rt.init_galil()
@@ -28,7 +27,7 @@ for shift in xrange(num_shifts):
     print "Shift %d" % shift
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
-        volts = dmm.read_agilent(dmmser)
+        volts = dmm.read_agilent()
         counts = fog.read_emcore(fogser)
         thyme = difftime(starttime,time.time())
         data[idx,]=[degs,volts,counts,thyme]
