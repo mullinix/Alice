@@ -23,8 +23,6 @@ def difftime(start,end):
 
 data=np.zeros(num_samples*num_shifts,dtype=[('degs', 'float'),('volts','float'),('fogs','float'),('time','float')])
 
-print data.dtype.names
-
 north=np.zeros(num_shifts)
 
 dmm = DMM_Communicator()
@@ -46,7 +44,7 @@ for shift in xrange(num_shifts):
     rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
     time.sleep(4)
-    north[shift] = findNorth(data[xrange(idx)])
+    north[shift] = findNorth(data[range(idx)])
 
 np.savetxt(fname,data,delimiter=",")
 
