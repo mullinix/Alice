@@ -22,6 +22,7 @@ def difftime(start,end):
     return float(end-start)
 
 data=np.zeros((num_samples*num_shifts,4))
+data.view(dtype=[('degs', 'float'),('volts','float'),('fogs','float'),('time','float')]).reshape(len(data))
 
 north=np.zeros(num_shifts)
 
