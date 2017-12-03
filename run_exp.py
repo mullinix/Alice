@@ -21,7 +21,7 @@ num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 def difftime(start,end):
     return float(end-start)
 
-data=np.zeros(4,dtype=[('degs', 'float',num_samples*num_shifts),('volts','float',num_samples*num_shifts),('fogs','float',num_samples*num_shifts),('time','float',num_samples*num_shifts)])
+data=np.zeros(num_samples*num_shifts,dtype=[('degs', 'float'),('volts','float'),('fogs','float'),('time','float')])
 
 print data.dtype.names
 
@@ -40,17 +40,17 @@ for shift in xrange(num_shifts):
         volts = dmm.read_agilent()
         counts = fog.read_emcore()
         thyme = difftime(starttime,time.time())
-        data[idx,]=[degs,volts,counts,thyme]
+        data[idx]=(degs,volts,counts,thyme)
         print "Progress: %.2f%%" % (float(idx+1)/(num_shifts*num_samples)*100)
-        print data[idx,]
+        print data[idx]
     rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
     time.sleep(4)
-    north[shift] = findNorth(data[1:idx,])
+    north[shift] = findNorth(data[xrange(idx)])
 
 np.savetxt(fname,data,delimiter=",")
 
-udegs=np.unique(data[:,1])
+udegs=np.unique(data['degs'])
 
 plt.plot(udegs,north,'k.-',label='Convergence to North')
 plt.legend()
