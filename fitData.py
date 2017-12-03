@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#data = np.genfromtxt('results.csv',delimiter=',',dtype=[('degs','float'),('volts','float'),('fogs','float'),('time','float')])
 def findNorth(data):
 	udegs=np.unique(data['degs'])
 	ndegs=len(udegs)
