@@ -49,7 +49,7 @@ for shift in xrange(num_shifts):
 
 np.savetxt(fname,data,delimiter=",")
 
-udegs=np.unique(data[,1])
+udegs=np.unique(data[:,1])
 
 plt.plot(udegs,north,'k.-',label='Convergence to North')
 plt.legend()
