@@ -10,4 +10,4 @@ os.system("moveRT.py %.2f" % randegs)
 
 print "Finding North..."
 
-os.system("run_exp.py 10 15 dataout.csv")
+os.system("run_exp.py 10 5 dataout.csv")

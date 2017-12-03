@@ -32,7 +32,7 @@ fog = FOG_Communicator()
 starttime=time.time()
 degs=0
 for shift in xrange(num_shifts):
-    print "Shift %.2f, Progress: %.2f" % (degs,(float(shift+1)/(num_shifts)*100))
+    print "Shift %.2f deg, Progress: %.2f%%" % (degs,(float(shift+1)/(num_shifts)*100))
     for sample in xrange(num_samples):
         idx = shift*num_samples+sample
         volts = dmm.read_agilent()
@@ -48,13 +48,13 @@ np.savetxt(fname,data,delimiter=",")
 
 udegs=np.unique(data['degs'])
 
-plt.close('all')
-plt.plot(udegs,north,'k.-',label='Convergence to North')
-plt.legend(loc=1)
-plt.show(block=False)
-
 print "Rotating to %.2f degrees relative." % north[shift]
 rt.disconnect()
 dmm.disconnect()
 fog.disconnect()
 os.system(".\\moveRT.py %.2f" % north[shift])
+
+plt.close('all')
+plt.plot(udegs,north,'k.-',label='Convergence to North')
+plt.legend(loc=1)
+plt.show()
