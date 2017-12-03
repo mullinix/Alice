@@ -21,8 +21,9 @@ num_shifts = 360/shift_degs+1 # add one to include 180 degrees
 def difftime(start,end):
     return float(end-start)
 
-data=np.zeros((num_samples*num_shifts,4))
-data.view(dtype=[('degs', 'float'),('volts','float'),('fogs','float'),('time','float')]).reshape(len(data))
+data=np.zeros(4,dtype=[('degs', 'float',num_samples*num_shifts),('volts','float',num_samples*num_shifts),('fogs','float',num_samples*num_shifts),('time','float',num_samples*num_shifts)])
+
+print data.dtype.names
 
 north=np.zeros(num_shifts)
 
