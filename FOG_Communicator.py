@@ -9,7 +9,6 @@ class FOG_Communicator:
 	
 	def read_emcore(self):
 		self.ser.write('G')
-#                time.sleep(0.5)
                 self.ser.flushOutput()
                 self.ser.flushInput()
                 for i in xrange(5):
@@ -25,7 +24,6 @@ class FOG_Communicator:
 	def test_emcore(self):
 		for i in xrange(10):
                         print self.read_emcore()
-#			time.sleep(0.5)
                 self.ser.close()
 
 	def disconnect(self):

@@ -12,10 +12,10 @@ def findNorth(data):
 		times=data['time'][ix]
 		times=times-min(times)
 		dt=np.diff(times)
-		fogs=data['fogs'][ix]
-		dfogs=np.diff(fogs)
-		dfogsdt=dfogs/dt
-		counts_per_second[i]=np.median(dfogsdt)
+		volts=data['volts'][ix]
+		dvolts=np.diff(volts)
+		dvoltsdt=dvolts/dt
+		counts_per_second[i]=np.median(dvoltsdt)
 	
 	macks=np.median(counts_per_second)*2
 	fitrads=np.linspace(0,2*np.pi,num=100)
@@ -38,7 +38,7 @@ def findNorth(data):
 	A[:,1]=np.cos(fitrads)
 	A[:,2]=np.sin(fitrads)
 
-	plt.close('all')
+#	plt.close('all')
 	
 	plt.plot(udegs,counts_per_second,'k.',label='Data',markersize=10)
 	plt.plot(fitrads*180.0/np.pi,np.dot(A,fit.T),'b-',label='Fit')
