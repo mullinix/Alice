@@ -29,7 +29,7 @@ class RT_Communicator:
                 self.ser.flushOutput()
                 self.ser.flushInput()
                 self.ser.write('TPA\r\n')
-                time.sleep(0.1)
+                time.sleep(0.2)
                 loc=self.ser.readline() # first line out is text
                 loc=self.ser.readline() # this line is the number
                 loc=int(loc)
