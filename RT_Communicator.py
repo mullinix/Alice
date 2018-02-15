@@ -4,7 +4,7 @@ import time
 class RT_Communicator:
 	def __init__(self,PortIn='COM1', BaudIn=19200, TOIn=5):
 		self.ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
-                self.ser.write('EO 1\r\n') # the code is written expecting echo
+                self.ser.write('EO 0\r\n') # the code is written expecting echo
 #                time.sleep(0.5)
 		self.ser.write('SH A\r\n') # this starts code on A
 #                time.sleep(0.5)
@@ -44,7 +44,7 @@ class RT_Communicator:
 #                self.ser.write('TC0\r\n') # uncomment this line for error code return
 ##                time.sleep(0.5)
 #                self.ser.readline() # ignore the command echo
-		return int(self.ser.readline())
+		return 0 #int(self.ser.readline())
 	
 	def test_galil(self):
 		for i in xrange(3):
