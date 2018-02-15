@@ -5,7 +5,7 @@ class DMM_Communicator:
 	def __init__(self,PortIn='COM2', BaudIn=9600, TOIn=1):
 		self.ser=serial.Serial(port=PortIn,baudrate=BaudIn, timeout=TOIn)
 		self.ser.write('SYST:REM\n')
-		self.ser.write('MEAS:VOLT:DC? 0.1,1E-6\n')
+		self.ser.write('MEAS:VOLT:DC? 0.1,1E-7\n')
 		self.ser.write('INIT\n')
                 # here we read the first line (it comes out wonky, so let's waste it)
                 self.ser.write('READ?\n')
