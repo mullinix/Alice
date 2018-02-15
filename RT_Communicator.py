@@ -34,16 +34,16 @@ class RT_Communicator:
                 loc=self.ser.readline() # this line is the number
                 loc=int(loc)
                 # NOTE: We may have to adjust the following test to allow overflow of int!
-                while(loc<start+theta*2100):
-                    self.ser.write('TPA\r\n')
+#                while(loc<start+theta*2100):
+#                    self.ser.write('TPA\r\n')
 #                    time.sleep(0.5)
-                    loc=self.ser.readline() # first line out is text
-                    loc=self.ser.readline() # this line is the number
-                    loc=self.ser.readline() # this line is the number
-                    loc=int(loc)
-                self.ser.write('TC0\r\n') # uncomment this line for error code return
-#                time.sleep(0.5)
-                self.ser.readline() # ignore the command echo
+#                    loc=self.ser.readline() # first line out is text
+#                    loc=self.ser.readline() # this line is the number
+#                    loc=self.ser.readline() # this line is the number
+#                    loc=int(loc)
+#                self.ser.write('TC0\r\n') # uncomment this line for error code return
+##                time.sleep(0.5)
+#                self.ser.readline() # ignore the command echo
 		return int(self.ser.readline())
 	
 	def test_galil(self):
