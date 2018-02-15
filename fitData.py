@@ -35,7 +35,7 @@ def findNorth(data):
 	phase_shift = np.arctan2(betta,alfa)
 	phase_shift = 0.5*np.pi-phase_shift
 	faze = phase_shift*180/np.pi
-	root = np.mod((180.0-np.arcsin(betta/alfa)*180.0/np.pi-faze), 360.0)
+	root = np.mod((180.0+np.arctan(betta/alfa)*180.0/np.pi-faze), 360.0)
 #	root = np.mod(np.arctan(betta/alfa)*180.0/np.pi,360.0)
 	print "North is located at: %.2f degrees relative." % root
 
