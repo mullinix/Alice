@@ -41,7 +41,7 @@ for shift in xrange(num_shifts):
         data[idx]=(degs,volts,counts,thyme)
     rt.turn_galil(theta=shift_degs)
     degs+=shift_degs
-    time.sleep(4)
+#    time.sleep(4)
     north[shift] = findNorth(data[range(idx)])
 
 np.savetxt(fname,data,delimiter=",")
