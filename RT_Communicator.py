@@ -8,7 +8,7 @@ class RT_Communicator:
 		self.ser.write('SH A\r\n') # this starts code on A
                 self.ser.flushOutput()
 	
-        def turn_galil(self,AC=256000,DC=256000,SP=15120,theta=0):
+        def turn_galil(self,AC=256000,DC=256000,SP=8*15120,theta=0):
                 self.ser.flushOutput()
                 self.ser.flushInput()
                 writestr='ACA='+str(AC)+\
