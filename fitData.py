@@ -11,10 +11,12 @@ def findNorth(data):
 		ix=np.where(data['degs']==udegs[i])
 		times=data['time'][ix]
 		times=times-min(times)
-		dt=np.diff(times)
-		dt=np.insert(dt,0,dt[0])
+#		dt=np.diff(times)
+#		dt=np.insert(dt,0,dt[0])
+                dt=times[len(times)-1]
 		volts=data['volts'][ix]
-#		dvolts=np.diff(volts)
+		dvolts=np.diff(volts)
+                dvolts=sum(dvolts)
 		voltsdt=volts/dt
 #                voltspertime=volts/times
 		counts_per_second[i]=np.median(voltsdt)
