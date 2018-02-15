@@ -51,6 +51,6 @@ def findNorth(data):
 	plt.plot(root,B,'ro',label=('North: %.1f' % root),markersize=8)
 	plt.legend()
 	plt.show(block=False)
-#	plt.pause(1)
+	plt.pause(0.1)
 
 	return root
