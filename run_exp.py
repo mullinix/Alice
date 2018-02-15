@@ -39,7 +39,7 @@ for shift in xrange(num_shifts):
         counts = fog.read_emcore()
         thyme = difftime(starttime,time.time())
         data[idx]=(degs,volts,counts,thyme)
-    rt.turn_galil(theta=shift_degs)
+    rt.turn_galil(theta=shift_degs,SP=2*15120)
     degs+=shift_degs
 #    time.sleep(4)
     north[shift] = findNorth(data[range(idx)])
