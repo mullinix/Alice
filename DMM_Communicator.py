@@ -9,7 +9,7 @@ class DMM_Communicator:
 		self.ser.write('INIT\n')
                 # here we read the first line (it comes out wonky, so let's waste it)
                 self.ser.write('READ?\n')
-                time.sleep(0.5)
+                time.sleep(0.1)
                 self.ser.readline()
                 # flush serial, prepare for reading
                 self.ser.flushOutput()
@@ -25,7 +25,7 @@ class DMM_Communicator:
 	def test_agilent(self):
 		for i in xrange(10):
 			print self.read_agilent()
-			time.sleep(2)
+			#time.sleep(2)
 
 	
 	def disconnect(self):
