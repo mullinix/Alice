@@ -13,7 +13,7 @@ def findNorth(data):
 		times=times-min(times)
 		dt=np.diff(times)
 		volts=data['volts'][ix]
-		dvolts=np.diff(volts)
+		dvolts=volts#np.diff(volts)
 		dvoltsdt=dvolts/dt
 		counts_per_second[i]=np.median(dvoltsdt)
 	
