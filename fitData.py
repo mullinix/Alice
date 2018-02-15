@@ -12,7 +12,7 @@ def findNorth(data):
 		times=data['time'][ix]
 		times=times-min(times)
 		dt=np.diff(times)
-		dt=np.put(dt,0,0)
+		dt=np.insert(dt,0,0.)
 		volts=data['volts'][ix]
 #		dvolts=np.diff(volts)
 		voltsdt=volts/dt
