@@ -13,11 +13,11 @@ class RT_Communicator:
         def turn_galil(self,AC=256000,DC=256000,SP=15120,theta=0):
                 self.ser.flushOutput()
                 self.ser.flushInput()
-                self.ser.write('TPA\r\n')
+#                self.ser.write('TPA\r\n')
 #                time.sleep(0.5)
-                loc=self.ser.readline() # first line out is text
-                loc=self.ser.readline() # this line is the number
-                start=int(loc)
+#                loc=self.ser.readline() # first line out is text
+#                loc=self.ser.readline() # this line is the number
+#                start=int(loc)
                 writestr='ACA='+str(AC)+\
                         ';DCA='+str(DC)+\
                         ';SPA='+str(SP)+\
