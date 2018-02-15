@@ -28,27 +28,26 @@ def findNorth(data):
 	A[:,1]=np.cos(urads)
 	A[:,2]=np.sin(urads)
 	fit = np.linalg.lstsq(A,counts_per_second)[0]
-	alfa=fit[1]
-	betta=fit[2]
-	B=fit[0]
-	a=np.sqrt(alfa**2+betta**2)
-	phase_shift = np.arctan2(betta,alfa)
-#	phase_shift = 0.5*np.pi-phase_shift
-	faze = phase_shift*180.0/np.pi
-	root = np.mod((180.0+np.arctan(betta/alfa)*180.0/np.pi-faze), 360.0)
-#	root = np.mod(np.arctan(betta/alfa)*180.0/np.pi,360.0)
+	sin_amp=fit[1]
+	cos_amp=fit[2]
+	offset=fit[0]
+	amplitude=np.sqrt(cos_amp**2+sin_amp**2)
+	phase_shift = np.arctan2(sin_amp,cos_amp)
+	phase_shift_deg = phase_shift*180.0/np.pi
+	root = np.mod(180.0-phase_shift_deg,360.0)
+#	root = np.mod((180.0+np.arctan(sin_amp/cos_amp)*180.0/np.pi-phase_shift_deg), 360.0)
 	print "North is located at: %.2f degrees relative." % root
 
-	A=np.ones((100,3))
-	A[:,1]=np.cos(fitrads)
-	A[:,2]=np.sin(fitrads)
+#	A=np.ones((100,3))
+#	A[:,1]=np.cos(fitrads)
+#	A[:,2]=np.sin(fitrads)
 
 #	plt.close('all')
 	plt.clf()
 	
 	plt.plot(udegs,counts_per_second,'k.',label='Data',markersize=10)
-	plt.plot(fitrads*180.0/np.pi,np.dot(A,fit.T),'b-',label='Fit')
-	plt.plot(root,B,'ro',label=('North: %.1f' % root),markersize=8)
+	plt.plot(fitrads*180.0/np.pi,amplitude*np.sin(fitrads+phase_shift)+offset,'b-',label='Fit')
+	plt.plot(root,offset,'ro',label=('North: %.1f' % root),markersize=8)
 	plt.legend()
 	plt.show(block=False)
 	plt.pause(0.1)
