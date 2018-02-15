@@ -9,7 +9,7 @@ class DMM_Communicator:
 		self.ser.write('INIT\n')
                 # here we read the first line (it comes out wonky, so let's waste it)
                 self.ser.write('READ?\n')
-                time.sleep(0.1)
+#                time.sleep(0.1)
                 self.ser.readline()
                 # flush serial, prepare for reading
                 self.ser.flushOutput()
