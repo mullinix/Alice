@@ -39,6 +39,7 @@ def findNorth(data):
 	A[:,2]=np.sin(fitrads)
 
 #	plt.close('all')
+	plt.clf()
 	
 	plt.plot(udegs,counts_per_second,'k.',label='Data',markersize=10)
 	plt.plot(fitrads*180.0/np.pi,np.dot(A,fit.T),'b-',label='Fit')
