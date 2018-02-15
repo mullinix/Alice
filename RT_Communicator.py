@@ -39,6 +39,7 @@ class RT_Communicator:
 #                    time.sleep(0.5)
                     loc=self.ser.readline() # first line out is text
                     loc=self.ser.readline() # this line is the number
+                    loc=self.ser.readline() # this line is the number
                     loc=int(loc)
                 self.ser.write('TC0\r\n') # uncomment this line for error code return
 #                time.sleep(0.5)
