@@ -46,8 +46,8 @@ def findNorth(data):
 	plt.clf()
 	
 	plt.plot(udegs,counts_per_second,'k.',label='Data',markersize=10)
-	plt.plot(fitrads*180.0/np.pi,np.dot(A,fit.T)+B,'b-',label='Fit')
-	plt.plot(root,0,'ro',label=('North: %.1f' % root),markersize=8)
+	plt.plot(fitrads*180.0/np.pi,np.dot(A,fit.T),'b-',label='Fit')
+	plt.plot(root,B,'ro',label=('North: %.1f' % root),markersize=8)
 	plt.legend()
 	plt.show(block=False)
 	plt.pause(1)
